@@ -52,3 +52,43 @@ def get_employee(eid:int):
     if not employee:
         return HTTPException(status_code=404,detail="Employee Not found")
     return employee 
+
+
+
+'''
+usage:update employee by id
+Rest API URL: http://127.0.0.1:8000/emp/update/101
+Method Type:PUT
+Request Fields:eid,ename,esal,gender
+Access Type:Public
+'''
+
+@router.put("/update/{eid}")
+def update_emp(eid:int,emp:Employee):
+    #verify employee exists or not using eid
+    employee=emp_col.find_one({'eid':eid}) 
+
+    if not employee:
+        return HTTPException(status_code=404,detail="Employee Not Exits")
+
+    emp_col.update_one({'eid':eid},{'$set':emp.dict()})
+    return {'msg':"Employee Updated Successfully"}
+
+
+'''
+usage:delete employee by id
+Rest API URL: http://127.0.0.1:8000/emp/delete/101
+Method Type:DELETE
+Request Fields:None
+Access Type:Public
+'''
+
+@router.delete('/delete/{eid}')
+def delete_employee(eid:int):
+    #verify emploeye exists or not 
+    employee=emp_col.find_one({'eid':eid})
+
+    if not employee:
+        return HTTPException(status_code=404,detail="Employee Not Exits")
+    emp_col.delete_one({'eid':eid})
+    return {'msg':'Employee Deleted successfully'}

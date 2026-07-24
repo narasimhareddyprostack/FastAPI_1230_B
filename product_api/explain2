@@ -1,0 +1,11 @@
+5)fetch all stationary products 
+  http://127.0.0.1:8000/products/stationary 
+  @router.get("/stationary")   
+
+6)fetch all stationary products with price below 500
+  http://127.0.0.1:8000/products/st?price=500
+
+  @router.get("/st")
+  def get_products(price:int):
+  pass 
+  

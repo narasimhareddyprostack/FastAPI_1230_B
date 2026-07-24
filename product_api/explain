@@ -1,0 +1,14 @@
+
+3)Fetch product By Id 
+  http://127.0.0.1:8000/products/101 
+  Method Type:GET 
+  @router.get("/{pid})  
+
+5)fetch all stationary products 
+  http://127.0.0.1:8000/products/stationary 
+  @router.get("/stationary") 
+
+4)fetch product by category
+  http://127.0.0.1:8000/products/category/electorics
+  @router.get('/category/{category_name}'
+  Method Type:GET
